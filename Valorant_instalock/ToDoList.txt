@@ -1,5 +1,0 @@
-1. add agent slot selection
-2. cose program
-3. optimize
-4. make .exe
-5. maybe make it so it work on any res 
