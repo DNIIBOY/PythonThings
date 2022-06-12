@@ -10,26 +10,29 @@ def agent_select():
     agent_X = 626
     agent_Y = 925
 
-    slotInput = input("Select agent slot number: ")
+    try:
+        slotInput = input("Select agent slot number: ")
+    except KeyboardInterrupt:
+        slotInput = "19"
     if slotInput.strip().isdigit():
         slotInput = int(slotInput)
     else:
-        slotInput = 18
+        slotInput = 19
 
-    while slotInput < 1 or slotInput > 18:
-        print("Ivalid number, has to be between 1-18")
+    while slotInput < 1 or slotInput > 19:
+        print("Ivalid number, has to be between 1-19")
         slotInput = int(input("Select agent slot number: "))
 
-    if slotInput == 18:
+    if slotInput == 19:
         print("yoru selected")
     else:
         print(f"agent {slotInput} selected")
 
-    if 1 < slotInput < 10:
-        agent_X = agent_X+84*(slotInput-1)
-    elif slotInput > 9:
-        agent_X = agent_X+84*(slotInput-10)
-        agent_Y = agent_Y + 84
+    if 1 <= slotInput <= 10:
+        agent_X = agent_X+85*(slotInput-1)
+    elif slotInput > 10:
+        agent_X = agent_X+85*(slotInput-12)
+        agent_Y = agent_Y + 85
 
 
 def wait_for_select():
@@ -93,10 +96,13 @@ def main():
         pass
     print("agent locked")
     print("waiting for game load")
-    sleep(5)
-    wait_for_buy()
-    sleep(1)
-    yoru_buy()
+    try:
+        sleep(5)
+        wait_for_buy()
+        yoru_buy()
+    except KeyboardInterrupt:
+        print("quiting program...")
+        return
     print("items bought")
     print("quiting program...")
     quit()
